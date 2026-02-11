@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fusion - Making AI Easy! ✨</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@300;400;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-glow: #ffd700;
+            --secondary-glow: #ff6b6b;
+            --tertiary-glow: #4ecdc4;
+            --bg-dark: #0a0a1a;
+            --bg-card: rgba(255, 255, 255, 0.03);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #0a0a1a 0%, #1a0a2e 50%, #0f0a1f 100%);
+            background-attachment: fixed;
+            color: #fff;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Animated Background Stars */
+        body::before {
+            content: "";
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(2px 2px at 20% 30%, white, transparent),
+                radial-gradient(2px 2px at 60% 70%, white, transparent),
+                radial-gradient(1px 1px at 50% 50%, white, transparent),
+                radial-gradient(1px 1px at 80% 10%, white, transparent),
+                radial-gradient(2px 2px at 90% 60%, white, transparent),
+                radial-gradient(1px 1px at 33% 80%, white, transparent);
+            background-size: 200% 200%;
+            animation: twinkle 8s ease-in-out infinite;
+            opacity: 0.6;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.8; }
+        }
+
+        /* Header Box */
+        .header-box {
+            position: relative;
+            z-index: 100;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(20px);
+            border-bottom: 2px solid rgba(255, 215, 0, 0.2);
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+        }
+
+        .vibe-coding {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            background: linear-gradient(45deg, #ff6b6b, #ffd700, #4ecdc4, #a855f7, #ff6b6b);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: rainbowGlow 4s ease infinite;
+            filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.5));
+        }
+
+        @keyframes rainbowGlow {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .fusion-header {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 28px;
+            font-weight: 900;
+            color: #ffd700;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+            letter-spacing: 3px;
+        }
+
+        .created-by {
+            position: absolute;
+            top: 5px;
+            right: 40px;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.6);
+            font-weight: 300;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 100px 20px 80px;
+        }
+
+        .logo-container {
+            display: inline-block;
+            position: relative;
+            margin-bottom: 30px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .fusion-logo {
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, #ffd700 0%, #ffed4e 50%, #ffd700 100%);
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 80px;
+            font-weight: 900;
+            color: #0a0a1a;
+            box-shadow: 
+                0 0 60px rgba(255, 215, 0, 0.8),
+                0 0 100px rgba(255, 215, 0, 0.5),
+                inset 0 0 30px rgba(255, 255, 255, 0.3);
+            position: relative;
+            animation: logoGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes logoGlow {
+            0%, 100% { 
+                box-shadow: 
+                    0 0 60px rgba(255, 215, 0, 0.8),
+                    0 0 100px rgba(255, 215, 0, 0.5),
+                    inset 0 0 30px rgba(255, 255, 255, 0.3);
+            }
+            50% { 
+                box-shadow: 
+                    0 0 80px rgba(255, 215, 0, 1),
+                    0 0 120px rgba(255, 215, 0, 0.7),
+                    inset 0 0 40px rgba(255, 255, 255, 0.5);
+            }
+        }
+
+        .fusion-logo::after {
+            content: "";
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: linear-gradient(45deg, transparent, rgba(255, 215, 0, 0.2), transparent);
+            border-radius: 35px;
+            animation: rotate 4s linear infinite;
+            z-index: -1;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .fusion-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 72px;
+            font-weight: 900;
+            background: linear-gradient(45deg, #ffd700, #ffed4e, #ffd700);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 3s ease infinite;
+            text-shadow: 0 0 40px rgba(255, 215, 0, 0.6);
+            margin-bottom: 20px;
+            filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.8));
+        }
+
+        @keyframes shimmer {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .tagline {
+            font-size: 32px;
+            font-weight: 300;
+            background: linear-gradient(45deg, #4ecdc4, #44a08d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 60px;
+            filter: drop-shadow(0 0 15px rgba(78, 205, 196, 0.6));
+        }
+
+        /* AI Quote Section */
+        .ai-quote {
+            max-width: 900px;
+            margin: 0 auto 80px;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        }
+
+        .ai-quote p {
+            font-size: 24px;
+            line-height: 1.8;
+            background: linear-gradient(45deg, #ffd700, #ff6b6b, #4ecdc4);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 4s ease infinite;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        /* Sections */
+        .sections-container {
+            position: relative;
+            z-index: 10;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 60px 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .section {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(255, 215, 0, 0.2);
+            border-radius: 25px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .section:hover::before {
+            left: 100%;
+        }
+
+        .section:hover {
+            transform: translateY(-10px);
+            border-color: rgba(255, 215, 0, 0.5);
+            box-shadow: 0 20px 60px rgba(255, 215, 0, 0.3);
+        }
+
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 36px;
+            font-weight: 900;
+            background: linear-gradient(45deg, #ffd700, #ff6b6b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .section-icon {
+            font-size: 40px;
+        }
+
+        .section-content {
+            font-size: 18px;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 30px;
+        }
+
+        /* Members */
+        .members-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .member {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px 20px;
+            border-radius: 15px;
+            border-left: 4px solid #ffd700;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .member:hover {
+            background: rgba(255, 215, 0, 0.1);
+            transform: translateX(10px);
+        }
+
+        .member-icon {
+            font-size: 28px;
+        }
+
+        .member-name {
+            font-size: 18px;
+            font-weight: 600;
+            color: #ffd700;
+        }
+
+        /* Web Apps Grid */
+        .webapp-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+            margin-top: 25px;
+        }
+
+        .webapp-card {
+            background: rgba(0, 0, 0, 0.4);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 20px;
+            padding: 30px 20px;
+            text-align: center;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            position: relative;
+            text-decoration: none;
+            display: block;
+        }
+
+        .webapp-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            border-color: #ffd700;
+            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.4);
+        }
+
+        .webapp-icon {
+            font-size: 60px;
+            margin-bottom: 15px;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .webapp-card:nth-child(1) .webapp-icon { animation-delay: 0s; }
+        .webapp-card:nth-child(2) .webapp-icon { animation-delay: 0.3s; }
+        .webapp-card:nth-child(3) .webapp-icon { animation-delay: 0.6s; }
+
+        .webapp-name {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: #ffd700;
+            margin-bottom: 8px;
+        }
+
+        .webapp-status {
+            font-size: 14px;
+            padding: 6px 12px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        .status-dev {
+            background: rgba(255, 107, 107, 0.2);
+            color: #ff6b6b;
+            border: 1px solid rgba(255, 107, 107, 0.4);
+        }
+
+        .status-test {
+            background: rgba(78, 205, 196, 0.2);
+            color: #4ecdc4;
+            border: 1px solid rgba(78, 205, 196, 0.4);
+        }
+
+        .status-soon {
+            background: rgba(255, 215, 0, 0.2);
+            color: #ffd700;
+            border: 1px solid rgba(255, 215, 0, 0.4);
+        }
+
+        /* Decorative Art Section */
+        .art-section {
+            position: relative;
+            z-index: 10;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .art-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .art-item {
+            aspect-ratio: 1;
+            background: linear-gradient(45deg, rgba(255, 215, 0, 0.1), rgba(255, 107, 107, 0.1));
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            transition: all 0.4s ease;
+            animation: artFloat 3s ease-in-out infinite;
+        }
+
+        .art-item:nth-child(1) { animation-delay: 0s; }
+        .art-item:nth-child(2) { animation-delay: 0.5s; }
+        .art-item:nth-child(3) { animation-delay: 1s; }
+        .art-item:nth-child(4) { animation-delay: 1.5s; }
+        .art-item:nth-child(5) { animation-delay: 2s; }
+        .art-item:nth-child(6) { animation-delay: 2.5s; }
+
+        @keyframes artFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(5deg); }
+        }
+
+        .art-item:hover {
+            transform: scale(1.2) rotate(10deg);
+            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.5);
+        }
+
+        /* Footer */
+        .footer {
+            position: relative;
+            z-index: 10;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(20px);
+            border-top: 2px solid rgba(255, 215, 0, 0.2);
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 32px;
+            font-weight: 900;
+            background: linear-gradient(45deg, #ffd700, #ff6b6b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+        }
+
+        .footer-text {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 10px;
+        }
+
+        .copyright {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.5);
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-box {
+                flex-direction: column;
+                gap: 10px;
+                padding: 15px 20px;
+            }
+
+            .created-by {
+                position: static;
+                margin-top: 10px;
+            }
+
+            .fusion-logo {
+                width: 100px;
+                height: 100px;
+                font-size: 60px;
+            }
+
+            .fusion-title {
+                font-size: 48px;
+            }
+
+            .tagline {
+                font-size: 24px;
+            }
+
+            .ai-quote p {
+                font-size: 18px;
+            }
+
+            .sections-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Loading Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section {
+            animation: fadeIn 0.8s ease-out backwards;
+        }
+
+        .section:nth-child(1) { animation-delay: 0.1s; }
+        .section:nth-child(2) { animation-delay: 0.3s; }
+        .section:nth-child(3) { animation-delay: 0.5s; }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header-box">
+        <div class="created-by">Created by Swaraj Nerlekar and Claude AI</div>
+        <div class="vibe-coding">Vibe Coding</div>
+        <div class="fusion-header">FUSION</div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="logo-container">
+            <div class="fusion-logo">F</div>
+        </div>
+        <h1 class="fusion-title">Fusion</h1>
+        <p class="tagline">Making AI Easy! ✨</p>
+    </section>
+
+    <!-- AI Quote -->
+    <div class="ai-quote">
+        <p>"Artificial Intelligence is not just the future — it's the present. At Fusion, we believe AI should empower everyone, from students to professionals, transforming complex technology into simple, accessible solutions. Our mission is to democratize AI, making it a tool that enhances creativity, productivity, and innovation for all." 🚀</p>
+    </div>
+
+    <!-- Main Sections -->
+    <div class="sections-container">
+        <!-- About Section -->
+        <section class="section">
+            <h2 class="section-title">
+                <span class="section-icon">🌟</span>
+                About
+            </h2>
+            <div class="section-content">
+                <p>Hello! We are <strong>Fusion</strong> — Making AI Easy for everyone! 🎯</p>
+                <p style="margin-top: 15px;">
+                    We're on a mission to democratize artificial intelligence, transforming it from a complex, 
+                    intimidating technology into an accessible, powerful tool for everyone. Whether you're a 
+                    student, professional, or curious learner, Fusion is here to help you harness the power of AI.
+                </p>
+                <p style="margin-top: 15px;">
+                    Founded by a 13-year-old visionary and powered by cutting-edge AI collaboration, 
+                    we're proving that age is just a number when it comes to innovation. 💡
+                </p>
+            </div>
+            
+            <h3 style="color: #ffd700; font-size: 24px; margin-bottom: 15px; font-family: 'Orbitron', sans-serif;">
+                👥 Team Members
+            </h3>
+            <div class="members-list">
+                <div class="member">
+                    <span class="member-icon">👨‍💻</span>
+                    <span class="member-name">Swaraj Nerlekar</span>
+                    <span style="color: rgba(255,255,255,0.6); font-size: 14px; margin-left: auto;">Founder</span>
+                </div>
+                <div class="member">
+                    <span class="member-icon">🤖</span>
+                    <span class="member-name">Claude AI</span>
+                    <span style="color: rgba(255,255,255,0.6); font-size: 14px; margin-left: auto;">Co-Creator</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Web Apps Section -->
+        <section class="section">
+            <h2 class="section-title">
+                <span class="section-icon">🚀</span>
+                Web Apps
+            </h2>
+            <div class="section-content">
+                <p>Explore our collection of AI-powered applications designed to make your life easier!</p>
+            </div>
+
+            <div class="webapp-grid">
+                <a href="https://supernerlekar.github.io/Chief-AI/" target="_blank" class="webapp-card">
+                    <div class="webapp-icon">👨‍🍳</div>
+                    <div class="webapp-name">Chief AI</div>
+                    <div style="display: flex; flex-direction: column; gap: 5px; margin-top: 10px;">
+                        <span class="webapp-status status-dev">Under Development</span>
+                        <span class="webapp-status status-test">Test Available</span>
+                    </div>
+                </a>
+
+                <div class="webapp-card" style="cursor: not-allowed; opacity: 0.7;">
+                    <div class="webapp-icon">🔢</div>
+                    <div class="webapp-name">Calculator</div>
+                    <span class="webapp-status status-soon">Coming Soon!</span>
+                </div>
+
+                <div class="webapp-card" style="cursor: not-allowed; opacity: 0.7;">
+                    <div class="webapp-icon">🎵</div>
+                    <div class="webapp-name">Song Picker</div>
+                    <span class="webapp-status status-soon">Coming Soon!</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Overview Section -->
+        <section class="section">
+            <h2 class="section-title">
+                <span class="section-icon">📊</span>
+                Overview
+            </h2>
+            <div class="section-content">
+                <p><strong>What We Do:</strong></p>
+                <p style="margin-top: 10px;">
+                    🎯 Build AI-powered web applications<br>
+                    ✨ Create user-friendly interfaces<br>
+                    🚀 Make complex technology accessible<br>
+                    💡 Innovate with cutting-edge AI<br>
+                    🌍 Serve users worldwide
+                </p>
+
+                <p style="margin-top: 20px;"><strong>Our Vision:</strong></p>
+                <p style="margin-top: 10px;">
+                    To become the leading platform for accessible AI tools, empowering millions of users 
+                    to enhance their productivity, creativity, and learning through intelligent applications.
+                </p>
+
+                <p style="margin-top: 20px;"><strong>Tech Stack:</strong></p>
+                <p style="margin-top: 10px;">
+                    💻 HTML, CSS, JavaScript<br>
+                    ⚛️ React & Modern Frameworks<br>
+                    🤖 AI Integration & APIs<br>
+                    ☁️ Cloud Deployment<br>
+                    📱 Responsive Design
+                </p>
+            </div>
+        </section>
+    </div>
+
+    <!-- Decorative Art Section -->
+    <section class="art-section">
+        <h2 style="font-family: 'Orbitron', sans-serif; font-size: 48px; color: #ffd700; margin-bottom: 50px; text-shadow: 0 0 30px rgba(255, 215, 0, 0.6);">
+            ✨ Powered by Innovation ✨
+        </h2>
+        <div class="art-grid">
+            <div class="art-item">🚀</div>
+            <div class="art-item">💡</div>
+            <div class="art-item">🎯</div>
+            <div class="art-item">⚡</div>
+            <div class="art-item">🌟</div>
+            <div class="art-item">🔥</div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-logo">FUSION</div>
+        <div class="footer-text">Making AI Easy for Everyone</div>
+        <div class="footer-text">Created with ❤️ by Swaraj Nerlekar & Claude AI</div>
+        <div class="copyright">
+            © 2026 Fusion. All rights reserved. | Empowering the world with accessible AI
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll for any future internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add interactive sparkle effect on mouse move (lightweight version)
+        let lastSparkle = 0;
+        document.addEventListener('mousemove', (e) => {
+            const now = Date.now();
+            if (now - lastSparkle > 100) { // Throttled for performance
+                const sparkle = document.createElement('div');
+                sparkle.style.position = 'fixed';
+                sparkle.style.left = e.clientX + 'px';
+                sparkle.style.top = e.clientY + 'px';
+                sparkle.style.width = '4px';
+                sparkle.style.height = '4px';
+                sparkle.style.background = '#ffd700';
+                sparkle.style.borderRadius = '50%';
+                sparkle.style.pointerEvents = 'none';
+                sparkle.style.zIndex = '9999';
+                sparkle.style.animation = 'sparkle 1s ease-out forwards';
+                document.body.appendChild(sparkle);
+                
+                setTimeout(() => sparkle.remove(), 1000);
+                lastSparkle = now;
+            }
+        });
+
+        // Add sparkle animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes sparkle {
+                0% { opacity: 1; transform: scale(1) translateY(0); }
+                100% { opacity: 0; transform: scale(0) translateY(-50px); }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Parallax effect on sections
+        document.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallaxElements = document.querySelectorAll('.section');
+            
+            parallaxElements.forEach((el, index) => {
+                const speed = 0.5 + (index * 0.1);
+                const yPos = -(scrolled * speed / 10);
+                el.style.transform = `translateY(${yPos}px)`;
+            });
+        });
+
+        console.log('%c🚀 Welcome to Fusion! 🚀', 'font-size: 24px; color: #ffd700; font-weight: bold; text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);');
+        console.log('%cMaking AI Easy for Everyone! ✨', 'font-size: 16px; color: #4ecdc4;');
+    </script>
+</body>
+</html>
